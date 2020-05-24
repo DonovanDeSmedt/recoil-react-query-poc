@@ -1,0 +1,69 @@
+name: Build & Test
+
+trigger:
+  branches:
+    include:
+      - master
+
+pr:
+  branches:
+    include:
+      - '*'
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+jobs:
+  - job: BuildTest
+    displayName: 'Build & Test'
+    steps:
+      - task: NodeTool@0
+        inputs:
+          versionSpec: '10.x'
+        displayName: 'Install Node.js'
+
+      - task: Npm@1
+        inputs:
+          command: 'custom'
+          customCommand: 'install webpack-cli --save-dev'
+        displayName: 'Install Webpack CLI'
+
+      - task: Npm@1
+        inputs:
+          command: 'custom'
+          customCommand: 'install jest-junit --save-dev'
+        displayName: 'Install Jest JUnit'
+
+      - task: Npm@1
+        inputs:
+          command: 'install'
+        displayName: 'Npm install'
+
+      - task: Npm@1
+        condition: not(eq(variables['SkipTests'], 'true'))
+        inputs:
+          command: 'custom'
+          customCommand: 'run test:report'
+        displayName: 'Run unit tests'
+
+      - task: PublishTestResults@2
+        condition: not(eq(variables['SkipTests'], 'true'))
+        inputs:
+          testResultsFormat: 'JUnit'
+          testResultsFiles: 'junit.xml'
+          mergeTestResults: true
+          testRunTitle: 'Jest Unit Tests'
+        displayName: 'Publish test results'
+
+      - task: PublishCodeCoverageResults@1
+        condition: not(eq(variables['SkipTests'], 'true'))
+        inputs:
+          codeCoverageTool: 'Cobertura'
+          summaryFileLocation: 'coverage/cobertura-coverage.xml'
+        displayName: 'Publish code coverage results'
+
+      - task: Npm@1
+        inputs:
+          command: 'custom'
+          customCommand: 'run dist'
+        displayName: 'Build template'
