@@ -1,17 +1,17 @@
 import React from 'react';
-import useTodos from '../../hooks/useTodos';
-import { useToggleTodo } from '../../hooks/useTodoMutations';
+import useTodos from '../../hooks/todo/useTodos';
+import useToggleTodo from '../../hooks/todo/useToggleTodo';
 
 export const TodoList = props => {
   const { data: todos, isFetching, error } = useTodos();
   const [
-    mutate,
+    handleToggle,
     { status: mutatationStatus, error: mutationError, reset },
   ] = useToggleTodo();
 
   const toggleTodo = (todo, isActive) => {
     // update todo via API
-    mutate({ ...todo, active: isActive });
+    handleToggle({ ...todo, active: isActive });
   };
 
   // no data

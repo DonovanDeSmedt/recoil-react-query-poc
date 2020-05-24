@@ -1,79 +1,18 @@
-# React Template
+# State management using hooks
 
-This is the revamped React template, based on [Create React App](https://github.com/facebook/create-react-app), tailored for MWI projects.
+## Idea
 
-## Getting started
+Redux is a great state management system but can often create a serious overhead.
+In quite some cases, state management is used when it's in essence not required. We like to keep a distinction between presentational & functional components, so whenever the use case includes fetching any data, the store is being used for that. 
 
-1. clone this repo
-2. run `yarn` from the root directory
-3. run `yarn start`
-4. Open `localhost:3000` in your browser
-5. Start writing components from entry point `src/app.js` 😎
+In order to fullfil the need of loading state, error handling & data manipulation, many actions, reducers (and sagas) are being created. This works fine is and scalable for large applications but takes too much monkey work time.
 
-## Table of Contents
+Many people ran against this 'problem'. Recently two new, promising looking libraries were introduced to help us dealing with those 'problems'. One of those is called [React Query](https://github.com/tannerlinsley/react-query), the other one goes by the name of [Recoil](https://github.com/facebookexperimental/Recoil)
 
-- [Folder Structure](#structure)
-- [Available Scripts](#available-scripts)
-- [MWI customs]()
-- [Styling - styled components]()
-- [Testing]()
-- [Git Hooks]()
-- [Examples]()
+### React Query
 
-## Structure
+TBD
 
-### config
+### Recoil
 
-### examples
-
-### public
-
-### scripts
-
-### src
-
-## Available Scripts
-
-In the project directory, you can run:
-
-### `yarn start`
-
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
-
-### `yarn test`
-
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `yarn dist`
-
-Builds the app for production to the `dist` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
-
-## MWI Customs
-
-### useAPI Hook
-With this template comes a handy out-of-the-box useAPI hook to enable easy data fetching.
-It takes care of
-- Authentication (see [authentication-manager](#utils/authentication-manager.js))
-- Logging (see [default @dlw/dlw-logger integration](#default-@dlw/dlw-logger-integration))
-- Loading state
-- Error state
-- Immediate execution or execute whenever you want
-
-For a more detailed information or an example, go check out [data fetching examples](https://github.com/netweaverdlw/MW_React_template/tree/master/examples/dataFetching))
-
-### utils/authentication-manager.js
-
-### utils/check-api-status.js
-
-### default @dlw/dlw-logger integration
-
-### ErrorBoundary component
+TBD

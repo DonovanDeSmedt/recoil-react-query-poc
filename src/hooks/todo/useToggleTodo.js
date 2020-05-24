@@ -1,14 +1,5 @@
 import { useMutation, queryCache } from 'react-query';
-import axios from 'axios';
-
-export const toggleTodo = async newTodo => {
-  const { data } = await axios.put(
-    `https://json-mock-data-server.herokuapp.com/todos/${newTodo.id}`,
-    newTodo,
-  );
-  return data;
-};
-
+import { toggleTodo } from '../../services/todo.service';
 // by creating an optimistic mutation, refetching of data is not required
 export const optimisticTodoMutation = newTodo => {
   //   Cancel any outgoing refetches (so they don't overwrite our optimistic update)
@@ -32,7 +23,7 @@ export const optimisticTodoMutation = newTodo => {
   return () => queryCache.setQueryData('todos', previousTodos);
 };
 
-export function useToggleTodo() {
+export default function useToggleTodo() {
   return useMutation(toggleTodo, {
     onMutate: optimisticTodoMutation,
     onSuccess: (data, variables) => {
@@ -40,8 +31,6 @@ export function useToggleTodo() {
       // queryCache.refetchQueries('todos');
     },
     onError: (error, newTodo, rollback) => {
-      console.log('error', error);
-      console.log(newTodo);
       return rollback();
     },
   });
