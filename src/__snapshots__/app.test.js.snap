@@ -1,12 +1,84 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`App renders welcome message 1`] = `
-Array [
-  <p>
-    Import your first component here (app.js)
-  </p>,
-  <p>
-    Happy coding!
-  </p>,
-]
+<div
+  style={
+    Object {
+      "display": "flex",
+      "flex": 1,
+      "flexDirection": "row",
+      "justifyContent": "space-between",
+    }
+  }
+>
+  <div>
+    <div>
+      <h2>
+        Todo creator
+      </h2>
+      <span>
+        First 
+        light
+         todo is 
+        unchecked
+      </span>
+      <div
+        style={
+          Object {
+            "display": "flex",
+            "flexDirection": "row",
+          }
+        }
+      >
+        <input
+          onChange={[Function]}
+          value=""
+        />
+        <button
+          onClick={[Function]}
+        >
+          Add new todo
+        </button>
+      </div>
+    </div>
+    <div>
+      No data to be displayed
+    </div>
+  </div>
+  <div
+    style={
+      Object {
+        "display": "flex",
+        "flexDirection": "row",
+      }
+    }
+  >
+    <div>
+      <input
+        checked={true}
+        id="light"
+        name="gender"
+        onChange={[Function]}
+        type="radio"
+        value="light"
+      />
+      <label>
+        light
+      </label>
+    </div>
+    <div>
+      <input
+        checked={false}
+        id="dark"
+        name="gender"
+        onChange={[Function]}
+        type="radio"
+        value="dark"
+      />
+      <label>
+        dark
+      </label>
+    </div>
+  </div>
+</div>
 `;

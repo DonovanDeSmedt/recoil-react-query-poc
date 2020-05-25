@@ -1,14 +1,20 @@
 import { useQuery } from 'react-query';
-import { useEffect, useState } from 'react';
-import useTodos from './useTodos';
+import { useEffect, useState, useMemo } from 'react';
+import useTodos, { useTodosManual } from './useTodos';
 import { getTodoById } from '../../services/todo.service';
+import { themeState } from '../../state/atoms/theme.atom';
+import { selector, useRecoilState } from 'recoil';
+import { todosState } from '../../state/atoms/todos.atom';
 
 // NOTE: this is an exmaple with manipulating an existing data set
 // mimicking a memoised selector
+
+// TODO: change implementation to async recoil selector
+// use recoil & react query together
 export default function useTodoById(todoId) {
   const [todo, setTodo] = useState({});
   // Fetching data
-  const { status, data, error, isFetching, refetch } = useTodos();
+  const { status, data, error, isFetching } = useTodos();
 
   // Manipulating data
   useEffect(() => {

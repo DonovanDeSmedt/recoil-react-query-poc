@@ -18,7 +18,7 @@ export const getTodoById = async (_, todoId) => {
   return data;
 };
 
-export const getTodos = async (_, postId) => {
+export const getTodos = async () => {
   const { data } = await axios.get(baseUrl);
   return data;
 };
