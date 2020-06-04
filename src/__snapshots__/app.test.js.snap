@@ -42,7 +42,8 @@ exports[`App renders welcome message 1`] = `
       </div>
     </div>
     <div>
-      No data to be displayed
+      Loading
+       todos...
     </div>
   </div>
   <div
