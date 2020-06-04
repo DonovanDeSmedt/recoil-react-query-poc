@@ -15,7 +15,10 @@ export const TodoList = props => {
     handleToggle({ ...todo, active: isActive });
   };
 
-  // no data
+  if (isFetching || mutatationStatus === 'loading') {
+    return <div>{isFetching ? 'Loading' : 'Mutating'} todos...</div>;
+  }
+
   if (!todos || !todos.length) {
     return <div>No data to be displayed</div>;
   }
@@ -23,23 +26,21 @@ export const TodoList = props => {
   return (
     <div>
       <h2>Todo list</h2>
-      {(isFetching || mutatationStatus === 'loading') && <div>Loading</div>}
-      {!isFetching &&
-        todos.map(todo => (
-          <div
-            key={todo.id}
-            style={{
-              display: 'flex',
-              flexDirection: 'row',
-              marginBottom: '1em',
-            }}>
-            <input
-              type="checkbox"
-              checked={todo.active}
-              onChange={e => toggleTodo(todo, e.target.checked)}></input>
-            <div>{todo.text}</div>
-          </div>
-        ))}
+      {todos.map(todo => (
+        <div
+          key={todo.id}
+          style={{
+            display: 'flex',
+            flexDirection: 'row',
+            marginBottom: '1em',
+          }}>
+          <input
+            type="checkbox"
+            checked={todo.active}
+            onChange={e => toggleTodo(todo, e.target.checked)}></input>
+          <div>{todo.text}</div>
+        </div>
+      ))}
     </div>
   );
 };

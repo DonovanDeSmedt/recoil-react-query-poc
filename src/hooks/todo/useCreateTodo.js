@@ -9,6 +9,7 @@ export default function useCreateTodo() {
       const previousTodos = queryCache.getQueryData('todos');
       // add newly created todo to global state (cache)
       queryCache.setQueryData('todos', prevTodos => [...prevTodos, newTodo]);
+      // NOTE: also option to put in recoil
       // Return the snapshotted value
       return () => queryCache.setQueryData('todos', previousTodos);
     },

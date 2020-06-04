@@ -8,6 +8,7 @@ import { todoByIdQuery } from '../../state/selectors/todo.selector';
 export const TodoDetail = props => {
   const [todoText, setTodoText] = useState('');
 
+  // This will work even if todos or not fetched
   const { data, isFetching, error } = useTodoById(props.todoId);
   const [create, { status, error: createError, reset }] = useCreateTodo();
   const theme = useRecoilValue(themeState);
