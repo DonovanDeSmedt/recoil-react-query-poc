@@ -1,23 +1,12 @@
 import { useQuery } from 'react-query';
-import { themeState } from '../../state/atoms/theme.atom';
 import { getTodos } from '../../services/todo.service';
-import { selector } from 'recoil';
+import { selector, selectorFamily } from 'recoil';
+import { todosState } from '../atoms/todos.atom';
 
-// export const todosQuery = selector({
-//   key: 'Todos',
-//   get: async ({ get }) => {
-//     const todos = await getTodos();
-//     return todos;
-//   },
-// });
-
-// NOTE: this code will work once recoil 0.0.8 is released
-// export const todoByIdQuery = selectorFamily({
-//   key: 'TodoById',
-//   get: todoId => ({ get }) => {
-//     // get todos from atom state not from todosQuery, todosQuery will fetch them from API again
-//     // successCallback of react query should put todos in atom
-//     const todos = get(todoState); // to be implemented
-//     return todos.find(todo => todo.id === todoId);
-//   },
-// });
+export const todoByIdQuery = selectorFamily({
+  key: 'TodoById',
+  get: todoId => ({ get }) => {
+    const todos = get(todosState);
+    return (todos || []).find(todo => todo.id === todoId);
+  },
+});

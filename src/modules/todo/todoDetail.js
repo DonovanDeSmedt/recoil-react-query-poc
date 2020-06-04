@@ -4,6 +4,7 @@ import useTodoById, { useTodoByIdQuery } from '../../hooks/todo/useTodo';
 import useCreateTodo from '../../hooks/todo/useCreateTodo';
 import { themeState } from '../../state/atoms/theme.atom';
 import { todoByIdQuery } from '../../state/selectors/todo.selector';
+import { todosState } from '../../state/atoms/todos.atom';
 
 export const TodoDetail = props => {
   const [todoText, setTodoText] = useState('');
@@ -13,9 +14,9 @@ export const TodoDetail = props => {
   const [create, { status, error: createError, reset }] = useCreateTodo();
   const theme = useRecoilValue(themeState);
 
-  // FIXME: this will work once recoil v0.0.8 is released
   // this is a variant for useTodoById but by using Recoil
-  // const selectedTodo = useRecoilValueLoadable(todoByIdQuery(props.todoId));
+  const selectedTodo = useRecoilValue(todoByIdQuery(props.todoId));
+  console.log('selectedTodo', selectedTodo);
 
   const handleCreateTodo = () => {
     // create todo via API

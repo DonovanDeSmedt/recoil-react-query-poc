@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import useTodos from '../../hooks/todo/useTodos';
 import useToggleTodo from '../../hooks/todo/useToggleTodo';
+import { todosState } from '../../state/atoms/todos.atom';
 
 export const TodoList = props => {
   const { data: todos, isFetching, error } = useTodos();
-
   const [
     handleToggle,
     { status: mutatationStatus, error: mutationError, reset },

@@ -8,9 +8,6 @@ import { todosState } from '../../state/atoms/todos.atom';
 
 // NOTE: this is an exmaple with manipulating an existing data set
 // mimicking a memoised selector
-
-// TODO: change implementation to async recoil selector
-// use recoil & react query together
 export default function useTodoById(todoId) {
   const [todo, setTodo] = useState({});
   // Fetching data
